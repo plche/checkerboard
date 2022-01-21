@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checkerboard</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    </head>
+    <body>
+        <h1 style="color: {{clr1}}; background-color: {{clr2}};">*** Checkerboard ***</h1>
+        <div class="wrapper">
+            {% set ns = namespace(flag=true) %}
+            {% for y in range(rows): %}
+                {% set ns.flag = not ns.flag %}
+                <div class="row">
+                    {% for x in range(cols): %}                        
+                        {% if ns.flag == true: %}
+                            <div class="col" style="background-color: {{clr1}};"></div>
+                        {% else: %}
+                            <div class="col" style="background-color: {{clr2}};"></div>
+                        {% endif %}
+                        {% set ns.flag = not ns.flag %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
